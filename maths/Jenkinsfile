@@ -13,15 +13,10 @@ pipeline {
                 ''' 
             }
         }
-        stage('clean') {
-            steps{
-                sh 'mvn -f maths/pom.xml clean'
-            }
-        }
         
         stage('Unit Tests') {
             steps{
-                sh 'mvn -f maths/pom.xml test'
+                sh 'mvn -f maths/pom.xml clean test'
             }
         }
 
