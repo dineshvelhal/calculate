@@ -15,8 +15,7 @@ pipeline {
         }
         stage('clean') {
             steps{
-                sh 'cd maths'
-                sh 'mvn clean'
+                sh 'mvn -f maths/pom.xml clean'
             }
         }
 
