@@ -15,7 +15,9 @@ pipeline {
         }
         stage('clean') {
             steps{
-                cd maths
+                sh 'cd maths'
+            }
+            steps{
                 sh 'mvn clean'
             }
 
