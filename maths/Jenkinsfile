@@ -1,12 +1,17 @@
 pipeline {
     agent any
+	tools { 
+        maven 'maven3.6' 
+        jdk 'jdk8' 
+    }
+	
     stages {
-        stage ('Clone') {
-            steps {
-                git branch: 'master', url: "https://github.com/dineshvelhal/adder.git"
+		stage('Unit Tests') {
+            steps{
+                sh 'mvn -f maths/pom.xml clean test'
             }
         }
-
+		
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
