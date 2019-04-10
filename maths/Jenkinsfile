@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage ('Exec Maven') {
+        stage ('Build & Upload Artifact') {
             steps {
                 rtMavenRun (
                     tool: "maven3.6", // Tool name from Jenkins configuration
