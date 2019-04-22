@@ -18,8 +18,6 @@ pipeline {
                     id: "ARTIFACTORY_SERVER",
                     url: "http://artifactory:8081/artifactory",
 		    credentialsId: 'admin.jfrog'
-                    //username: "admin",
-                    //password: "Krsna2005"
                 )
 
                 rtMavenDeployer (
