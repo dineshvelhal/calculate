@@ -6,11 +6,19 @@ pipeline {
     }
 	
     stages {
-	stage('Unit Tests') {
+		stage('Unit Tests') {
             steps{
                 sh 'mvn -f maths/pom.xml clean test'
             }
         }
+        
+        stage("sonar_static_check"){
+            steps{
+                sh 'mvn -f maths/pom.xml sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dmaven.test.skip=true'
+            }
+
+        }
+
 		
         stage ('Artifactory configuration') {
             steps {
