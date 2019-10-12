@@ -14,7 +14,12 @@ pipeline {
         
         stage("sonar_static_check"){
             steps{
-                sh 'mvn -f maths/pom.xml sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dmaven.test.skip=true'
+		withSonarQubeEnv('My SonarQube Server') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'maven3.6') {
+                        sh 'mvn -f maths/pom.xml sonar:sonar -Dmaven.test.skip=true'
+                    }
+                }
             }
 
         }
