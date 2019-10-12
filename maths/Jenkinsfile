@@ -16,7 +16,7 @@ pipeline {
             steps{
 		withSonarQubeEnv('MySonarQube') {
                     // Optionally use a Maven environment you've configured already
-                    sh 'mvn -f maths/pom.xml sonar:sonar -Dmaven.test.skip=true'
+                    sh 'mvn -f maths/pom.xml clean sonar:sonar -Dmaven.test.skip=true'
                 }
             }
 
@@ -24,7 +24,7 @@ pipeline {
 	
 	stage("Quality Gate") {
             steps {
-                timeout(time: 5, unit: 'MINUTES') {
+                timeout(time: 2, unit: 'MINUTES') {
                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: true
