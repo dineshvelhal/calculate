@@ -14,7 +14,7 @@ pipeline {
         
         stage("sonar_static_check"){
             steps{
-		withSonarQubeEnv('My SonarQube Server') {
+		withSonarQubeEnv('MySonarQube') {
                     // Optionally use a Maven environment you've configured already
                     withMaven(maven:'maven3.6') {
                         sh 'mvn -f maths/pom.xml sonar:sonar -Dmaven.test.skip=true'
