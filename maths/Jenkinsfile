@@ -28,9 +28,19 @@ pipeline {
     		}
     	}
     	stage('PROVISION') {
-    		steps {
-    			sh 'echo USED TO PROVISION DB, VIRTUALZED END POINTS AND OTHER RESOURCES'
+    		parallel {
+    			stage('DATABASE') {
+    				steps {
+    					sh 'echo USED TO PROVISION DATABASE'
+    				}
+    			}
+    			stage('SERVICE VIRTUA.') {
+    				steps {
+    					sh 'echo USED TO PROVISION VIRTUALIZED END POINTS'
+    				}
+    			}
     		}
+    		
     	}
 		stage('PREVIEW') {
     		steps {
