@@ -34,15 +34,20 @@ pipeline {
     					sh 'echo USED TO PROVISION DATABASE'
     				}
     			}
-    			stage('SERVICE VIRTUA.') {
+    			stage('SERVICE V. (WIREMOCK)') {
     				steps {
     					sh 'echo USED TO PROVISION VIRTUALIZED END POINTS'
+    				}
+    			}
+    			stage('PERF. (JMETER') {
+    				steps {
+    					sh 'echo USED TO PROVISION JMeter Service'
     				}
     			}
     		}
     		
     	}
-		stage('PREVIEW') {
+		stage('PREVIEW ENV.') {
     		steps {
     			sh 'echo Application is deployed here in Preview environment'
     		}
@@ -57,6 +62,50 @@ pipeline {
     			stage('API TESTS') {
     				steps {
     					sh 'echo UI TESTS'
+    				}
+    			}
+    			stage('SHIFT LEFT PERF. TESTS') {
+    				steps {
+    					sh 'echo SHIFT LEFT PERF. TESTS'
+    				}
+    			}
+    		}
+    	}
+    	
+    	stage('CLEAN-UP') {
+    		steps {
+    			sh 'echo CLEAN UP THE PROVISIONED RESOURCES'
+    		}
+    	}
+    	
+    	stage('DEPLOY-TEST-ENV') {
+    		steps {
+    			sh 'echo DEPLOY ON THE TEST ENVIRONMENT'
+    		}
+    	}
+    	
+    	stage('TEST-TEST-ENV') {
+    		steps {
+    			sh 'echo TEST IN TEST ENVIRONMENT'
+    		}
+    	}
+    	
+    	stage('DEPLOY - TRIAL/PRE-PROD') {
+    		steps {
+    			sh 'echo DEPLOY IN TRIAL/PREPROD ENVIRONMENT'
+    		}
+    	}
+    	
+    	stage('TEST - TRIAL/PRE-PROD') {
+    		parallel {
+    			stage('INTEGRATION TESTS') {
+    				steps {
+    					sh 'echo INETGRATION TESTS'
+    				}
+    			}
+    			stage('PERFORMANCE TESTS') {
+    				steps {
+    					sh 'echo PERFORMANCE TESTS'
     				}
     			}
     		}
