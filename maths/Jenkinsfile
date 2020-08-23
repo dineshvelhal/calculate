@@ -15,7 +15,7 @@ pipeline {
     			stage("SONAR CODE CHECK"){
         			steps{
 						withSonarQubeEnv('MySonarQube') {
-                			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
+                			sh 'echo /home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
             			}
             			
             			timeout(time: 2, unit: 'MINUTES') {
