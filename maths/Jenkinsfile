@@ -15,7 +15,7 @@ pipeline {
     			stage("SONAR CODE CHECK"){
         			steps{
 						withSonarQubeEnv('MySonarQube') {
-                			sh 'echo /home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
+                			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
             			}
             			
             			timeout(time: 2, unit: 'MINUTES') {
@@ -29,7 +29,7 @@ pipeline {
     	}
     	stage('PROVISION') {
     		steps {
-    			sh 'USED TO PROVISION DB, VIRTUALZED END POINTS AND OTHER RESOURCES'
+    			sh 'echo USED TO PROVISION DB, VIRTUALZED END POINTS AND OTHER RESOURCES'
     		}
     	}
     }
