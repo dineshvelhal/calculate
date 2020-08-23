@@ -3,7 +3,7 @@ pipeline {
     stages {
     	stage('Pre-Build') {
     		parallel {
-    			stage('Unit Tests') {
+    			stage('UNIT TESTS') {
 					agent {
                 		docker { image 'maven:3-alpine' }
             		}
@@ -12,7 +12,7 @@ pipeline {
             		}
         		}
         		
-    			stage("sonar_static_check"){
+    			stage("SONAR CODE CHECK"){
         			steps{
 						withSonarQubeEnv('MySonarQube') {
                 			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
@@ -24,14 +24,13 @@ pipeline {
 	                		waitForQualityGate abortPipeline: true
             			}
         			}
-        			//steps {
-            			
-        			//}
     			}
-
-				//stage("Quality Gate") {
-        			
-    			//}
+    		}
+    		
+    		stage('PROVISION') {
+    			steps {
+    				sh 'USED TO PROVISION DB, VIRTUALZED END POINTS AND OTHER RESOURCES'
+    			}
     		}
     	}
     }
