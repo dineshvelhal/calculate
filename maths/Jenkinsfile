@@ -1,33 +1,37 @@
 pipeline {
     agent any
     stages {
-		stage('Unit Tests') {
-			agent {
-                docker { image 'maven:3-alpine' }
-            }
-            steps{
-                sh 'mvn -f maths/pom.xml clean test'
-            }
-        }
-        
-        stage("sonar_static_check"){
-            steps{
-				withSonarQubeEnv('MySonarQube') {
-                    // Optionally use a Maven environment you've configured already
-                    sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
-                }
-            }
+    	stage('Pre-Build') {
+    		parallel {
+    			stage('Unit Tests') {
+					agent {
+                		docker { image 'maven:3-alpine' }
+            		}
+            		steps{
+                		sh 'mvn -f maths/pom.xml clean test'
+            		}
+        		}
+        		stage('Static Code Analysis'){
+        			stage("sonar_static_check"){
+            			steps{
+							withSonarQubeEnv('MySonarQube') {
+                    			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
+                			}
+            			}
 
-        }
+        			}
 	
-		stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+					stage("Quality Gate") {
+            			steps {
+                			timeout(time: 2, unit: 'MINUTES') {
+                    		// Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    		// true = set pipeline to UNSTABLE, false = don't
+                    		waitForQualityGate abortPipeline: true
+                			}
+            			}
+        			}
+        		}
+    		}
+    	}
     }
 }
