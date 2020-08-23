@@ -14,7 +14,7 @@ pipeline {
             steps{
 				withSonarQubeEnv('MySonarQube') {
                     // Optionally use a Maven environment you've configured already
-                    sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
+                    sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
                 }
             }
 
