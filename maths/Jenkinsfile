@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-    	stage('Pre-Build') {
+    	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
 					agent {
