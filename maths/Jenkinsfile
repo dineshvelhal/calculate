@@ -8,7 +8,7 @@ pipeline {
                 		docker { image 'maven:3-alpine' }
             		}
             		steps{
-                		sh 'mvn -f maths/pom.xml clean test'
+                		sh 'mvn -f maths/pom.xml clean verify'
             		}
         		}
         		
@@ -103,6 +103,7 @@ pipeline {
     					sh 'echo INETGRATION TESTS'
     				}
     			}
+    			
     			stage('PERFORMANCE TESTS') {
     				steps {
     					sh 'echo PERFORMANCE TESTS'
