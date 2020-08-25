@@ -8,7 +8,7 @@ pipeline {
                 		docker { image 'maven:3-alpine' }
             		}
             		steps{
-                		sh 'mvn -f maths/pom.xml clean verify'
+                		sh 'mvn -f maths/pom.xml clean verify test'
             		}
         		}
         		
