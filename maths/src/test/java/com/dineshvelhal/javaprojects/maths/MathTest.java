@@ -40,15 +40,15 @@ public class MathTest {
 	public void addTest() {
 		System.out.println("@Test Inside addTest");
 		
-		assertEquals(5, math.add(2, 3));
+		assertEquals(6, math.add(2, 3));
 	}
 	
-	@Test
-	public void subtractTest() {
-		System.out.println("@Test Inside subtractTest");
-		
-		assertEquals(5, math.subtract(7, 2));
-	}
+	/*
+	 * @Test public void subtractTest() {
+	 * System.out.println("@Test Inside subtractTest");
+	 * 
+	 * assertEquals(5, math.subtract(7, 2)); }
+	 */
 	
 	@Test
 	public void multiplyTest() {
