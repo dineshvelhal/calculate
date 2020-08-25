@@ -112,6 +112,7 @@ pipeline {
     			
     			stage('PERFORMANCE TESTS') {
     				steps {
+    					sleep 5
     					sh 'echo PERFORMANCE TESTS'
     				}
     			}
