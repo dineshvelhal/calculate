@@ -1,15 +1,18 @@
 pipeline {
     agent any
+    tools { 
+        maven 'maven' 
+    }
     stages {
     	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
-					agent {
-                		docker { 
-                			image 'maven:3-alpine' 
-                			args '-v $HOME/.m2:/root/.m2 -v /home/dinesh/maven_con_vol/:/var/lib/jenkins/workspace'
-                		}
-            		}
+					//agent {
+                	//	docker { 
+                	//		image 'maven:3-alpine' 
+                	//		args '-v $HOME/.m2:/root/.m2 -v /home/dinesh/maven_con_vol/:/var/lib/jenkins/workspace'
+                	//	}
+            		//}
             		steps{
                 		sh 'mvn -f maths/pom.xml clean verify test'
             		}
