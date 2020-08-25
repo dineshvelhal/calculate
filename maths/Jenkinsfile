@@ -4,9 +4,9 @@ pipeline {
     	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
-					agent {
-                		docker { image 'maven:3-alpine' }
-            		}
+					//agent {
+                		//docker { image 'maven:3-alpine' }
+            		//}
             		steps{
                 		sh 'mvn -f maths/pom.xml clean verify test'
             		}
