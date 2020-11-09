@@ -58,7 +58,7 @@ pipeline {
     		parallel {
     			stage('SMOKE TEST') {
     				steps {
-    					sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=smoke_tests.xml'
+    					sh 'mvn -f maths/pom.xml verify test -Dsuitename=smoke_tests.xml'
     				}
     			}
     			stage('API TESTS') {
