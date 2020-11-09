@@ -8,7 +8,6 @@ pipeline {
     		parallel {
     			stage('UNIT TESTS') {
             		steps{
-            			sh 'mvn -f maths/pom.xml clean'
                 		sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml'
             		}
         		}
@@ -57,10 +56,9 @@ pipeline {
     	}
     	stage('TEST') {
     		parallel {
-    			stage('UI TESTS') {
+    			stage('SMOKE TEST') {
     				steps {
-    					sleep 5
-    					sh 'echo UI TESTS'
+    					sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=smoke_tests.xml'
     				}
     			}
     			stage('API TESTS') {

@@ -2,7 +2,7 @@
 <suite name="Application Basics">
 	<test name="basic Tests">
 		<classes>
-			<class name="com.dineshvelhal.javaprojects.maths.tests.UnitTests" />
+			<class name="com.dineshvelhal.javaprojects.maths.tests.SmokeTests" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.testng.annotations.AfterTest;
 
-public class UnitTests {
+public class SmokeTests {
 	Maths math;
 	
 	@Test(description = "Addition Test")

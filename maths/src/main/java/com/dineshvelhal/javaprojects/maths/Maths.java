@@ -8,7 +8,7 @@ package com.dineshvelhal.javaprojects.maths;
  * 
  *
  */
-public class Math 
+public class Maths 
 {
     public int add(int a, int b) {
     	return a + b;
