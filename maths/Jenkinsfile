@@ -8,6 +8,7 @@ pipeline {
     		parallel {
     			stage('UNIT TESTS') {
             		steps{
+            			sh 'mvn -f maths/pom.xml clean'
                 		sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml'
             		}
         		}
