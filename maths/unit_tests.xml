@@ -3,7 +3,7 @@
 	<test name="basic Tests">
 		<classes>
 			<class
-				name="com.dineshvelhal.javaprojects.maths.tests.SmokeTests" />
+				name="com.dineshvelhal.javaprojects.maths.tests.UnitTests" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
