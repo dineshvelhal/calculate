@@ -7,14 +7,8 @@ pipeline {
     	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
-					//agent {
-                	//	docker { 
-                	//		image 'maven:3-alpine' 
-                	//		args '-v $HOME/.m2:/root/.m2 -v /home/dinesh/maven_con_vol/:/var/lib/jenkins/workspace'
-                	//	}
-            		//}
             		steps{
-                		sh 'mvn -f maths/pom.xml clean verify test'
+                		sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml'
             		}
         		}
         		
@@ -144,8 +138,8 @@ pipeline {
     }
     post {
         always {
-            junit 'maths/target/surefire-reports/*.xml'
-            step( [ $class: 'JacocoPublisher' ] )
+            junit 'maths/target/surefire-reports/junitreports/*.xml'
+            step( [ $class: 'JacocoPublisher' ] ) 
         }
     }
 }
