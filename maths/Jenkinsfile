@@ -14,7 +14,7 @@ pipeline {
     		parallel {
     			stage('UNIT TESTS') {
             		steps{
-                		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage.quality.gate=${params.CODE_COVERAGE_QG}"
+                		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage_quality_gate=${params.CODE_COVERAGE_QG}"
             		}
             		post {
         				always {
