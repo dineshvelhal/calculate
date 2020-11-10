@@ -60,11 +60,11 @@ pipeline {
     				steps {
     					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=smoke_tests.xml'
     				}
-    			}
-    			post {
-    			    always {
-    			        step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
-    			    }
+    				post {
+    			    	always {
+    			        	step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
+    			    	}
+    				}
     			}
 
     			stage('API TESTS') {
