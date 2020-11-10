@@ -20,6 +20,7 @@ pipeline {
         				always {
             				junit 'maths/target/surefire-reports/junitreports/*.xml'
             				step( [ $class: 'JacocoPublisher' ] ) 
+            				step( [ $class: 'JUnitTestReportPublisher', fileIncludePattern: 'maths/target/surefire-reports/junitreports/*.xml' ])
         				}
     				}
         		}
