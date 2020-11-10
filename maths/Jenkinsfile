@@ -10,9 +10,9 @@ pipeline {
 
     
     stages {
-    	stage('PRE BUILD') {
+    	stage('Pre-Build') {
     		parallel {
-    			stage('UNIT TESTS') {
+    			stage('Unit Tests') {
             		steps{
                 		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage_quality_gate=${params.CODE_COVERAGE_QG}"
             		}
@@ -24,7 +24,7 @@ pipeline {
     				}
         		}
         		
-    			stage("SONAR CODE CHECK"){
+    			stage("Code Quality"){
         			steps{
 						withSonarQubeEnv('MySonarQube') {
                 			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
@@ -39,20 +39,20 @@ pipeline {
     			}
     		}
     	}
-    	stage('PROVISION') {
+    	stage('Provision') {
     		parallel {
-    			stage('DATABASE') {
+    			stage('DB') {
     				steps {
     					sleep 1
     					sh 'echo USED TO PROVISION DATABASE'
     				}
     			}
-    			stage('SERVICE V. (WIREMOCK)') {
+    			stage('Wiremock') {
     				steps {
     					sh 'echo USED TO PROVISION VIRTUALIZED END POINTS'
     				}
     			}
-    			stage('PERF. (JMETER') {
+    			stage('JMeter') {
     				steps {
     					sh 'echo USED TO PROVISION JMeter Service'
     				}
@@ -60,15 +60,15 @@ pipeline {
     		}
     		
     	}
-		stage('PREVIEW ENV.') {
+		stage('CI Env.') {
     		steps {
     			sleep 1
     			sh 'echo Application is deployed here in Preview environment'
     		}
     	}
-    	stage('TEST') {
+    	stage('Test') {
     		parallel {
-    			stage('SMOKE TEST') {
+    			stage('Smoke') {
     				steps {
     					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=smoke_tests.xml'
     				}
@@ -80,59 +80,45 @@ pipeline {
     				}
     			}
 
-    			stage('API TESTS') {
+    			stage('Acceptance') {
     				steps {
     					sleep 1
     					sh 'echo UI TESTS'
     				}
     			}
-    			stage('SHIFT LEFT PERF. TESTS') {
+    			stage('Performance') {
     				steps {
-    					sleep 1
+    					sleep 5
     					sh 'echo SHIFT LEFT PERF. TESTS'
     				}
     			}
     		}
     	}
     	
-    	stage('CLEAN-UP') {
+    	stage('Cleanup') {
     		steps {
     			sleep 1
     			sh 'echo CLEAN UP THE PROVISIONED RESOURCES'
     		}
     	}
     	
-    	stage('DEPLOY-TEST-ENV') {
-    		steps {
-    			sleep 1
-    			sh 'echo DEPLOY ON THE TEST ENVIRONMENT'
-    		}
-    	}
-    	
-    	stage('TEST-TEST-ENV') {
-    		steps {
-    			sleep 1
-    			sh 'echo TEST IN TEST ENVIRONMENT'
-    		}
-    	}
-    	
-    	stage('DEPLOY - TRIAL/PRE-PROD') {
+    	stage('Deploy in TRIAL') {
     		steps {
     			sleep 1
     			sh 'echo DEPLOY IN TRIAL/PREPROD ENVIRONMENT'
     		}
     	}
     	
-    	stage('TEST - TRIAL/PRE-PROD') {
+    	stage('Test in Trial') {
     		parallel {
-    			stage('INTEGRATION TESTS') {
+    			stage('Integration') {
     				steps {
     					sleep 1
     					sh 'echo INETGRATION TESTS'
     				}
     			}
     			
-    			stage('PERFORMANCE TESTS') {
+    			stage('Performance') {
     				steps {
     					sleep 1
     					sh 'echo PERFORMANCE TESTS'
