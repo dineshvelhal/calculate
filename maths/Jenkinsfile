@@ -137,8 +137,7 @@ pipeline {
     	always {
     		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
         	// step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
-        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/smoke-test-results.xml' ])
-        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/acceptance-test-results.xml' ])
+        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/*-test-results.xml' ])
     	}
 	}
 }
