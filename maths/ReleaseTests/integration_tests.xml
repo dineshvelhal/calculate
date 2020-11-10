@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Application Basics">
-	<test name="basic Tests">
+<suite name="Integration Tests">
+	<test name="Integration Tests">
 		<classes>
 			<class name="com.dineshvelhal.javaprojects.maths.tests.IntegrationTests" />
 		</classes>
