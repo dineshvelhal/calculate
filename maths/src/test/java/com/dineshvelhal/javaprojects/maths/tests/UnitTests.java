@@ -14,12 +14,12 @@ import org.testng.annotations.AfterTest;
 public class UnitTests {
 	Maths math;
 	
-	@Test(description = "Addition Test")
-	public void addTest() {
-		System.out.println("@Test Inside addTest");
-		
-		assertEquals(5, math.add(2, 3));
-	}
+	/*
+	 * @Test(description = "Addition Test") public void addTest() {
+	 * System.out.println("@Test Inside addTest");
+	 * 
+	 * assertEquals(5, math.add(2, 3)); }
+	 */
 	
 	@Test(description = "Subtraction Test")
 	public void subtractTest() {
