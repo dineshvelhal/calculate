@@ -68,6 +68,7 @@ pipeline {
     				}
     				post {
     			    	always {
+    			    		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
     			        	step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
     			    	}
     				}
