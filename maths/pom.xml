@@ -115,7 +115,7 @@
 										<limit>
 											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.90</minimum>
+											<minimum>${coverage_quality_gate}</minimum>
 										</limit>
 									</limits>
 								</rule>
