@@ -31,7 +31,7 @@ pipeline {
     		parallel {
     			stage('DATABASE') {
     				steps {
-    					sleep 5
+    					sleep 1
     					sh 'echo USED TO PROVISION DATABASE'
     				}
     			}
@@ -50,7 +50,7 @@ pipeline {
     	}
 		stage('PREVIEW ENV.') {
     		steps {
-    			sleep 5
+    			sleep 1
     			sh 'echo Application is deployed here in Preview environment'
     		}
     	}
@@ -64,13 +64,13 @@ pipeline {
     			}
     			stage('API TESTS') {
     				steps {
-    					sleep 4
+    					sleep 1
     					sh 'echo UI TESTS'
     				}
     			}
     			stage('SHIFT LEFT PERF. TESTS') {
     				steps {
-    					sleep 2
+    					sleep 1
     					sh 'echo SHIFT LEFT PERF. TESTS'
     				}
     			}
@@ -79,28 +79,28 @@ pipeline {
     	
     	stage('CLEAN-UP') {
     		steps {
-    			sleep 2
+    			sleep 1
     			sh 'echo CLEAN UP THE PROVISIONED RESOURCES'
     		}
     	}
     	
     	stage('DEPLOY-TEST-ENV') {
     		steps {
-    			sleep 7
+    			sleep 1
     			sh 'echo DEPLOY ON THE TEST ENVIRONMENT'
     		}
     	}
     	
     	stage('TEST-TEST-ENV') {
     		steps {
-    			sleep 4
+    			sleep 1
     			sh 'echo TEST IN TEST ENVIRONMENT'
     		}
     	}
     	
     	stage('DEPLOY - TRIAL/PRE-PROD') {
     		steps {
-    			sleep 3
+    			sleep 1
     			sh 'echo DEPLOY IN TRIAL/PREPROD ENVIRONMENT'
     		}
     	}
@@ -109,14 +109,14 @@ pipeline {
     		parallel {
     			stage('INTEGRATION TESTS') {
     				steps {
-    					sleep 5
+    					sleep 1
     					sh 'echo INETGRATION TESTS'
     				}
     			}
     			
     			stage('PERFORMANCE TESTS') {
     				steps {
-    					sleep 5
+    					sleep 1
     					sh 'echo PERFORMANCE TESTS'
     				}
     			}
