@@ -72,12 +72,6 @@ pipeline {
     				steps {
     					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=smoke_tests.xml'
     				}
-    				post {
-    			    	always {
-    			    		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
-    			        	step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
-    			    	}
-    				}
     			}
 
     			stage('Acceptance') {
@@ -92,6 +86,12 @@ pipeline {
     					sh 'echo SHIFT LEFT PERF. TESTS'
     				}
     			}
+    			post {
+			    	always {
+			    		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
+			        	step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
+			    	}
+				}
     		}
     	}
     	
