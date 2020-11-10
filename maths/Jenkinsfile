@@ -76,8 +76,7 @@ pipeline {
 
     			stage('Acceptance') {
     				steps {
-    					sleep 1
-    					sh 'echo UI TESTS'
+    					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=acceptance_tests.xml'
     				}
     			}
     			stage('Performance') {
@@ -107,8 +106,7 @@ pipeline {
     		parallel {
     			stage('Integration') {
     				steps {
-    					sleep 1
-    					sh 'echo INETGRATION TESTS'
+    					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=integration_tests.xml'
     				}
     			}
     			
