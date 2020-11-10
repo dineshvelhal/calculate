@@ -71,13 +71,13 @@ pipeline {
     		parallel {
     			stage('Smoke') {
     				steps {
-    					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=smoke_tests.xml'
+    					sh 'mvn -f maths/ReleaseTests/pom.xml test -Dsuitename=smoke_tests.xml -Dtestng.report.xml.name=smoke-test-results.xml'
     				}
     			}
 
     			stage('Acceptance') {
     				steps {
-    					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=acceptance_tests.xml'
+    					sh 'mvn -f maths/ReleaseTests/pom.xml test -Dsuitename=acceptance_tests.xml -Dtestng.report.xml.name=acceptance-test-results.xml'
     				}
     			}
     			stage('Performance') {
@@ -107,7 +107,7 @@ pipeline {
     		parallel {
     			stage('Integration') {
     				steps {
-    					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=integration_tests.xml'
+    					sh 'mvn -f maths/ReleaseTests/pom.xml test -Dsuitename=integration_tests.xml -Dtestng.report.xml.name=integration-test-results.xml'
     				}
     			}
     			
@@ -137,7 +137,8 @@ pipeline {
     	always {
     		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
         	// step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
-        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml' ])
+        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/smoke-test-results.xml' ])
+        	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/acceptance-test-results.xml' ])
     	}
 	}
 }
