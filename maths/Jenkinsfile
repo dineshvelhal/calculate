@@ -10,6 +10,12 @@ pipeline {
             		steps{
                 		sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml'
             		}
+            		post {
+        				always {
+            				junit 'maths/target/surefire-reports/junitreports/*.xml'
+            				step( [ $class: 'JacocoPublisher' ] ) 
+        				}
+    				}
         		}
         		
     			stage("SONAR CODE CHECK"){
@@ -140,11 +146,5 @@ pipeline {
     	//		}
     	//	}
     	//}
-    }
-    post {
-        always {
-            junit 'maths/target/surefire-reports/junitreports/*.xml'
-            step( [ $class: 'JacocoPublisher' ] ) 
-        }
     }
 }
