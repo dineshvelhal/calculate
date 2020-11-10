@@ -3,12 +3,15 @@ pipeline {
     tools { 
         maven 'maven' 
     }
+    
+    def COVERAGE_QUALITY_GATE = 0.5
+    
     stages {
     	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
             		steps{
-                		sh 'mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml'
+                		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage.quality.gate=$COVERAGE_QUALITY_GATE"
             		}
             		post {
         				always {
