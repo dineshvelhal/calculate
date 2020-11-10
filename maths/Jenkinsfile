@@ -4,14 +4,17 @@ pipeline {
         maven 'maven' 
     }
     
-    def COVERAGE_QUALITY_GATE = 0.5
+    params {
+        string(name: "CODE_COVERAGE_QG", defaultValue: '0.5', description: 'Code coverage quality gate')
+    }
+
     
     stages {
     	stage('PRE BUILD') {
     		parallel {
     			stage('UNIT TESTS') {
             		steps{
-                		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage.quality.gate=$COVERAGE_QUALITY_GATE"
+                		sh "mvn -f maths/pom.xml clean verify test -Dsuitename=unit_tests.xml -Dcoverage.quality.gate=${params.CODE_COVERAGE_QG}"
             		}
             		post {
         				always {
