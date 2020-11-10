@@ -109,7 +109,7 @@ pipeline {
     		}
     	}
     	
-    	stage('Test in Trial') {
+    	stage('Test in TRIAL') {
     		parallel {
     			stage('Integration') {
     				steps {

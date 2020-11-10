@@ -11,7 +11,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.testng.annotations.AfterTest;
 
-public class SmokeTests {
+public class AcceptanceTests {
 	Maths math;
 	
 	@Test(description = "Addition Test")
@@ -26,6 +26,21 @@ public class SmokeTests {
 		System.out.println("@Test Inside subtractTest");
 		
 		assertEquals(5, math.subtract(7, 2));
+	}
+	
+	@Test(description = "Multiplication Test")
+	public void multiplyTest() {
+		System.out.println("@Test Inside multiplyTest");
+		
+		assertEquals(15, math.multiply(5, 3));
+	}
+	
+	@Test(description = "Division Test")
+	public void divideTest() {
+		System.out.println("@Test Inside divideTest");
+		
+		assertEquals(5, math.divide(20, 4));
+		assertNotEquals(5.5, math.divide(11, 2)); // to check it's integer division
 	}
 
 
