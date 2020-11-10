@@ -18,7 +18,7 @@ pipeline {
             		}
             		post {
         				always {
-            				junit 'maths/target/surefire-reports/junitreports/*.xml'
+            				// junit 'maths/target/surefire-reports/junitreports/*.xml'
             				step( [ $class: 'JacocoPublisher' ] ) 
             				step( [ $class: 'JUnitTestReportPublisher', fileIncludePattern: 'maths/target/surefire-reports/junitreports/*.xml' ])
         				}
@@ -136,7 +136,7 @@ pipeline {
     post {
     	always {
     		junit 'maths/ReleaseTests/target/surefire-reports/junitreports/*.xml'
-        	step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
+        	// step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
         	step( [ $class: 'TestNGTestReportPublisher', fileIncludePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml' ])
     	}
 	}
