@@ -48,6 +48,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>${allure.testng.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -80,9 +86,20 @@
 				<version>${surefire.version}</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>unit_tests.xml</suiteXmlFile>
+						<suiteXmlFile>${suitename}</suiteXmlFile>
 					</suiteXmlFiles>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
@@ -123,8 +140,22 @@
 						</configuration>
 					</execution>
 				</executions>
+
+
+
 			</plugin>
 
 		</plugins>
 	</build>
+	
+	<reporting>
+		<excludeDefaults>true</excludeDefaults>
+		<plugins>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.10.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>

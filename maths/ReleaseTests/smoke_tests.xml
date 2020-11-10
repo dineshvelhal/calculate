@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Application Basics">
+	<test name="basic Tests">
+		<classes>
+			<class name="com.dineshvelhal.javaprojects.maths.tests.SmokeTests" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
