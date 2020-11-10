@@ -61,6 +61,12 @@ pipeline {
     					sh 'mvn -f maths/ReleaseTests/pom.xml verify test -Dsuitename=smoke_tests.xml'
     				}
     			}
+    			post {
+    			    always {
+    			        step([$class: 'Publisher', reportFilenamePattern: 'maths/ReleaseTests/target/surefire-reports/testng-results.xml'])
+    			    }
+    			}
+
     			stage('API TESTS') {
     				steps {
     					sleep 1
@@ -121,19 +127,19 @@ pipeline {
     			}
     		}
     	}
-    	stage('FUNCTIONAL TEST REPORTS') {
-    		steps {
-    			script {
-    				allure([
-    					includeProperties: false,
-   						jdk: '',
-   						properties: [],
-   						reportBuildPolicy: 'ALWAYS',
-   						results: [[path: 'maths/target/allure-results']]
-    				])
-    			}
-    		}
-    	}
+    	//stage('FUNCTIONAL TEST REPORTS') {
+    	//	steps {
+    	//		script {
+    	//			allure([
+    	//				includeProperties: false,
+   		//				jdk: '',
+   		//				properties: [],
+   		//				reportBuildPolicy: 'ALWAYS',
+   		//				results: [[path: 'maths/target/allure-results']]
+    	//			])
+    	//		}
+    	//	}
+    	//}
     }
     post {
         always {
