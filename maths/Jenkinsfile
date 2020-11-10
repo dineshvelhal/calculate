@@ -4,7 +4,7 @@ pipeline {
         maven 'maven' 
     }
     
-    params {
+    parameters {
         string(name: "CODE_COVERAGE_QG", defaultValue: '0.5', description: 'Code coverage quality gate')
     }
 
