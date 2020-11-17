@@ -99,7 +99,7 @@ pipeline {
     	
     	stage('Deploy in TRIAL') {
     		when {
-    		    expression { !(BRANCH_NAME ==~ 'feature') }
+    		    expression { !BRANCH_NAME.contains('feature') }
     		}
     		steps {
     			sleep 1
@@ -109,7 +109,7 @@ pipeline {
     	
     	stage('Test in TRIAL') {
     		when {
-    		    expression { !(BRANCH_NAME ==~ 'feature') }
+    		    expression { !BRANCH_NAME.contains('feature') }
     		}
     		parallel {
     			stage('Integration') {
