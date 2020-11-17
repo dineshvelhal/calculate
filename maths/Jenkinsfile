@@ -133,6 +133,9 @@ pipeline {
     	//	}
     	//}
     	stage ('Upload artifact') {
+    		when {
+                branch 'master' 
+            }
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
