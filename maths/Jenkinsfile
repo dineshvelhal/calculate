@@ -98,6 +98,9 @@ pipeline {
 
     	
     	stage('Deploy in TRIAL') {
+    		when {
+    		    expression { !(BRANCH_NAME ==~ 'feature') }
+    		}
     		steps {
     			sleep 1
     			sh 'echo DEPLOY IN TRIAL/PREPROD ENVIRONMENT'
@@ -105,6 +108,9 @@ pipeline {
     	}
     	
     	stage('Test in TRIAL') {
+    		when {
+    		    expression { !(BRANCH_NAME ==~ 'feature') }
+    		}
     		parallel {
     			stage('Integration') {
     				steps {
