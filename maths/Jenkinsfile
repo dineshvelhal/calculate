@@ -161,7 +161,7 @@ pipeline {
                 rtMavenRun (
                     tool: "maven", // Tool name from Jenkins configuration
                     pom: 'maths/pom.xml',
-                    goals: 'clean install -Dmaven.test.skip=true',
+                    goals: 'clean install -Djacoco.skip=true -Dmaven.test.skip=true',
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
                 )
