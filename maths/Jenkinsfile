@@ -159,7 +159,7 @@ pipeline {
         stage ('Build & Upload Artifact') {
             steps {
                 rtMavenRun (
-                    tool: "maven3.6", // Tool name from Jenkins configuration
+                    tool: "maven", // Tool name from Jenkins configuration
                     pom: 'maths/pom.xml',
                     goals: 'clean install -Dmaven.test.skip=true',
                     deployerId: "MAVEN_DEPLOYER",
