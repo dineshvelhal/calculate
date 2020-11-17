@@ -132,7 +132,7 @@ pipeline {
     	//		}
     	//	}
     	//}
-    	stage ('Artifactory configuration') {
+    	stage ('Upload artifact') {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
@@ -153,11 +153,7 @@ pipeline {
                     releaseRepo: "libs-release",
                     snapshotRepo: "libs-snapshot"
                 )
-            }
-        }
-
-        stage ('Build & Upload Artifact') {
-            steps {
+                
                 rtMavenRun (
                     tool: "maven", // Tool name from Jenkins configuration
                     pom: 'maths/pom.xml',
@@ -165,16 +161,13 @@ pipeline {
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
                 )
-            }
-        }
-
-        stage ('Publish build info') {
-            steps {
+                
                 rtPublishBuildInfo (
                     serverId: "ARTIFACTORY_SERVER"
                 )
             }
         }
+        
     }
     post {
     	always {
