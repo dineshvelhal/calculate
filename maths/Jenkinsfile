@@ -96,6 +96,11 @@ pipeline {
     		}
     	}
     	
+    	if (env.BRANCH_NAME.contains('feature')){
+    	    echo "******** BRANCH NAME IS $env.BRANCH_NAME"
+    	}
+
+    	
     	stage('Deploy in TRIAL') {
     		steps {
     			sleep 1
