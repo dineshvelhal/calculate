@@ -95,10 +95,6 @@ pipeline {
     			sh 'echo CLEAN UP THE PROVISIONED RESOURCES'
     		}
     	}
-    	
-    	if (env.BRANCH_NAME.contains('feature')){
-    	    echo "******** BRANCH NAME IS $env.BRANCH_NAME"
-    	}
 
     	
     	stage('Deploy in TRIAL') {
@@ -139,7 +135,8 @@ pipeline {
     	//}
     	stage ('Upload artifact') {
     		when {
-                branch 'master' 
+                // branch 'master' 
+                expression { BRANCH_NAME ==~ /(master)/ }
             }
             steps {
                 rtServer (
