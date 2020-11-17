@@ -18,7 +18,7 @@ public class IntegrationTests {
 	public void addTest() {
 		System.out.println("@Test Inside addTest");
 		
-		assertEquals(5, math.add(2, 4));
+		assertEquals(5, math.add(2, 3));
 	}
 	
 	@Test(description = "Subtraction Test")
