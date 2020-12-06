@@ -27,15 +27,16 @@ pipeline {
         		
     			stage("Code Quality"){
         			steps{
-						withSonarQubeEnv('MySonarQube') {
-                			sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
-            			}
+						//withSonarQubeEnv('MySonarQube') {
+                		//	sh '/home/dinesh/ci_cd/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner -Dproject.settings=maths/sonar-scanner.properties'
+            			//}
             			
-            			timeout(time: 2, unit: 'MINUTES') {
-	                		// Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-	                		// true = set pipeline to UNSTABLE, false = don't
-	                		waitForQualityGate abortPipeline: true
-            			}
+            			//timeout(time: 2, unit: 'MINUTES') {
+	                	//	// Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+	                	//	// true = set pipeline to UNSTABLE, false = don't
+	                	//	waitForQualityGate abortPipeline: true
+            			//}
+            			sh 'echo SONARQUBE'
         			}
     			}
     		}
